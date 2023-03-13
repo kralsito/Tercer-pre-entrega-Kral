@@ -1,0 +1,32 @@
+{% extends "AppFormularios/base.html"%}
+
+{% load static %}
+
+{% block main %}
+
+
+
+{% if form %}
+<h1> Administracion de Alumnos </h1>
+    <form action="{% url 'agregar-alumno' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Agregar">
+    </form>
+    
+    <h5> Lista de Alumnos </h5>
+    <ul>
+        {% for alumno in alumnos %}
+        <li> {{alumno.id}} - {{alumno.nombre}}  {{alumno.apellido}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1> Resultados de busqueda </h1>
+    <ul>
+        {% for alumno in alumnos %}
+        <li> {{alumno.id}} - {{alumno.nombre}}  {{alumno.apellido}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
