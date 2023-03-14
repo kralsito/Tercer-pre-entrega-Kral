@@ -1,0 +1,35 @@
+{% extends "AppFormularios/base.html"%}
+
+{% load static %}
+
+{% block main %}
+
+<h1> Resultados de busqueda </h1>
+<ul>
+    {% if profesores %}
+    <h6> Profesores</h6>
+    
+    {% for profesor in profesores %}
+    <li> {{profesor.id}} - {{profesor.nombre}}  {{profesor.apellido}} - {{profesor.profesion}}</li>
+    {% endfor %}
+    {% endif %}
+
+    {% if alumnos%}
+    <h6> Alumnos</h6>
+
+    {% for alumno in alumnos %}
+    <li> {{alumno.id}} - {{alumno.nombre}}  {{alumno.apellido}}</li>
+    {% endfor %}
+    {% endif %}
+
+    {% if cursos%}
+    <h6> Cursos</h6>
+
+    {% for curso in cursos %}
+    <li> {{curso.id}} - {{curso.nombre}}  {{curso.año_lectivo}}</li>
+    {% endfor %}
+    {% endif%}
+    
+</ul>
+
+{% endblock %}

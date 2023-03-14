@@ -23,16 +23,6 @@ def agregar_alumnos(request):
     }
     return render(request, "AppFormularios/admin_alumnos.html", context)
 
-def buscar_alumno(request):
-    criterio = request.GET.get("criterio")
-    context = {
-        "alumnos": Alumno.objects.filter(nombre__icontains=criterio).all()
-    }
-    return render(request, "AppFormularios/admin_alumnos.html", context)
-
-
-
-
 def mostrar_profesores(request):
     context = {
         "form": ProfesorForm(),
@@ -48,14 +38,6 @@ def agregar_profesor(request):
         "form": ProfesorForm(),
     }
     return render(request, "AppFormularios/admin_profesores.html", context)
-
-def buscar_profesor(request):
-    criterio = request.GET.get("criterio")
-    context = {
-        "profesores": Profesor.objects.filter(nombre__icontains=criterio).all()
-    }
-    return render(request, "AppFormularios/admin_profesores.html", context)
-
 
 
 def mostrar_cursos(request):
@@ -74,9 +56,13 @@ def agregar_curso(request):
     }
     return render(request, "AppFormularios/admin_Cursos.html", context)
 
-def buscar_curso(request):
+def buscar(request): #Modificar
     criterio = request.GET.get("criterio")
     context = {
-        "cursos": Curso.objects.filter(nombre__icontains=criterio).all()
+        "profesores": Profesor.objects.filter(nombre__icontains=criterio).all(),
+        "alumnos": Alumno.objects.filter(nombre__icontains=criterio).all(),
+        "cursos": Curso.objects.filter(nombre__icontains=criterio).all(),
     }
-    return render(request, "AppFormularios/admin_cursos.html", context)
+    return render(request, "AppFormularios/busqueda.html", context)
+
+
