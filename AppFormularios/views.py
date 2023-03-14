@@ -56,7 +56,7 @@ def agregar_curso(request):
     }
     return render(request, "AppFormularios/admin_Cursos.html", context)
 
-def buscar(request): #Modificar
+def buscar(request): 
     criterio = request.GET.get("criterio")
     context = {
         "profesores": Profesor.objects.filter(nombre__icontains=criterio).all(),
