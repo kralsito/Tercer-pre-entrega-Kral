@@ -1,0 +1,32 @@
+{% extends "AppFormularios/base.html"%}
+
+{% load static %}
+
+{% block main %}
+
+
+
+{% if form %}
+<h1> Administracion de Cursos </h1>
+    <form action="{% url 'agregar-curso' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Agregar">
+    </form>
+    
+    <h5> Cursos </h5>
+    <ul>
+        {% for curso in cursos %}
+        <li> {{curso.id}} - {{curso.nombre}}  {{curso.año_lectivo}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1> Resultados de busqueda </h1>
+    <ul>
+        {% for curso in cursos %}
+        <li> {{curso.id}} - {{curso.nombre}}  {{curso.año_lectivo}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
